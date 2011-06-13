@@ -56,152 +56,27 @@ var Load = {
 	    data = data.posts;
 	    for(var i = 0; i < data.length; i++){
 		Ti.API.info(i + ":" + data[i].type);
-		if(data[i].type == "regular"){
-		    //Ti.API.info(e["regular-title"]);
-		    //Ti.API.info(e["regular-body"]);
-		    //Ti.API.info(e["reblog-key"]);
-		    /*
-		    (function(post){
-			var view = Ti.UI.createScrollView({
-			    backgroundColor:color,
-			    contentHeight:'auto',
-			    top:0,
-			    showVerticalScrollIndicator:true
-			});
-			var v = Ti.UI.createWebView({
-			    backgroundColor:'white',
-			    height:'auto'
-			});
-			v.html = post["regular-title"] + '<br>' + post["regular-body"];
-			
-			v.addEventListener('doubletap', function(e){
-			    Ti.API.info('doubletaped:' + scrollView.currentPage);
-			    Load.reblog(post.id, post["reblog-key"]);
-			});
-			view.add(v);
-			scrollView.addView(view);
-		    })(data[i]);
-		    */
-		}else if(data[i].type == "link"){
-		    //Ti.API.info(e["link-text"]);
-		    //Ti.API.info(e["link-description"]);
-		    //Ti.API.info(e["reblog-key"]);
-		    /*
-		    (function(post){
-			var view = Ti.UI.createScrollView({
-			    backgroundColor:color,
-			    contentHeight:'auto',
-			    top:0,
-			    showVerticalScrollIndicator:true
-			});
-			var v = Ti.UI.createWebView({
-			    backgroundColor:'white',
-			    height:'auto'
-			});
-			v.html = post["link-text"] + '<br>' + post["link-description"];
-			v.addEventListener('doubletap', function(e){
-			    Ti.API.info('doubletaped:' + scrollView.currentPage);
-			    
-			    Load.reblog(post.id, post["reblog-key"]);
-			});
-			view.add(v);
-			scrollView.addView(view);
-		    })(data[i]);
-		    */
-		}else if(data[i].type == "photo"){
-		    //Ti.API.info(e["photo-url-400"]);
-		    //Ti.API.info(e["photo-caption"]);
-		    //Ti.API.info(e.id + ':' + e["reblog-key"]);
-		    (function(post){
-
-			var view = Ti.UI.createView({
-			    backgroundColor:color,
-			    top:0,
-			    canScale: true
-			});
-
-			var image = Ti.UI.createImageView({
-			    image:post["photo-url-250"]
-			});
-			image.addEventListener('doubletap', function(e){
-			    Ti.API.info('doubletaped:' + scrollView.currentPage);
-			    Load.reblog(post.id, post["reblog-key"]);
-			});
-			view.add(image);
-			scrollView.addView(view);
-		    })(data[i]);
-		}else if(data[i].type == "quote"){
-		    //Ti.API.info(e["quote-text"]);
-		    //Ti.API.info(e["reblog-key"]);
-		    /*
-		    (function(post){
-			var view = Ti.UI.createScrollView({
-			    backgroundColor:'black',
-			    //contentHeight:'auto',
-			    top:0,
-			    showVerticalScrollIndicator:false
-			});
-			var v = Ti.UI.createWebView({
-			    backgroundColor:'white',
-			    top:0
-			});
-			v.html = post["quote-text"] + '<br>' + post["quote-source"];
-			v.addEventListener('doubletap', function(e){
-			    Ti.API.info('doubletaped:' + scrollView.currentPage);
-			    
-			    Load.reblog(post.id, post["reblog-key"]);
-			});
-			view.add(v);
-			scrollView.addView(view);
-		    })(data[i]);
-		    */
-		}else if(data[i].type == "conversation"){
-		    //Ti.API.info(e.type);
-		    //Ti.API.info(e["conversation-title"]);
-		    //Ti.API.info(e["conversation-text"]);
-		    /*
-		    (function(post){
-			var view = Ti.UI.createScrollView({
-			    backgroundColor:color,
-			    contentHeight:'auto',
-			    top:0,
-			    showVerticalScrollIndicator:true
-			});
-			var v = Ti.UI.createWebView({
-			    backgroundColor:'white',
-			    height:'auto'
-			});
-			v.html = post["conversation-title"] + '<br>' + post["conversation-text"];
-			v.addEventListener('doubletap', function(e){
-			    Ti.API.info('doubletaped:' + scrollView.currentPage);
-			    Load.reblog(post.id, post["reblog-key"]);
-			});
-			view.add(v);
-			scrollView.addView(view);
-		    })(data[i]);
-		    */
-		}else if(data[i].type == "video"){
-		    //Ti.API.info(e["reblog-key"]);
-		    /*
-		      Ti.API.info("video");
-		      view = Ti.UI.createView({backgroundColor:'black'});
-		      v = Ti.UI.createWebView({
-		      backgroundColor:'white'
-		      });
-		      v.html = e["video-caption"] + '<br>' + e["video-source"] + '<br>'+ e["video-player"];
-		      var f = (function(e){
-		      return function(){
-		      Ti.API.info('doubletaped:' + scrollView.currentPage);
-		      
-		      Load.reblog(e.id, e["reblog-key"]);
-		      };
-		      })(e);
-		      v.addEventListener('doubletap', f);
-		      view.add(v);
-		      scrollView.addView(view);
-		    */
+		//Ti.API.info(e["photo-url-400"]);
+		//Ti.API.info(e["photo-caption"]);
+		//Ti.API.info(e.id + ':' + e["reblog-key"]);
+		(function(post){
 		    
-		}
+		    var view = Ti.UI.createView({
+			backgroundColor:color,
+			top:0,
+			canScale: true
+		    });
+		    
+		    var image = Ti.UI.createImageView({
+			image:post["photo-url-250"]
+		    });
+		    image.addEventListener('doubletap', function(e){
+			Ti.API.info('doubletaped:' + scrollView.currentPage);
+			Load.reblog(post.id, post["reblog-key"]);
+		    });
+		    view.add(image);
+		    scrollView.addView(view);
+		})(data[i]);
 	    }
 	};
 	loader.onerror = function(e){

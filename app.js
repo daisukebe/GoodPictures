@@ -6,6 +6,7 @@ var win1 = Ti.UI.createWindow({
     backgroundColor:'#fff',
     //url:'dashboard.js'
 });
+
 var tab1 = Ti.UI.createTab({
     title: 'tab1',
     window: win1
@@ -23,4 +24,5 @@ var tab2 = Ti.UI.createTab({
 tabg.addTab(tab1);
 tabg.addTab(tab2);
 tabg.open();
+
 //win1.open();

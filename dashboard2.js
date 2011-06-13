@@ -1,14 +1,19 @@
 mainWin = Ti.UI.currentWindow;
 
-//Ti.include('findtags.js');
+Ti.include('load2.js');
 
-var url = "http://www.tumblr.com/tagged/" + "fashion";
+var search = Titanium.UI.createSearchBar({
+        barColor:'#000', 
+        showCancel:true,
+        height:43,
+        top:0,
+});
+search.addEventListener('return', function(e){
+    Ti.API.info(e.value);
+    tagLoad.get(e.value);
+});
 
-var loader = Titanium.Network.createHTTPClient();
-loader.open('GET', url);
-loader.onload = function(){
-    var re = this.responseText;
-    Ti.API.info(re.indexOf("this.src"));
-};
-//loader.send({email:mail, password:pswd});
-loader.send();
+mainWin.add(search);
+
+
+
