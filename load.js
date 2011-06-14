@@ -44,7 +44,7 @@ var Load = {
 
 	var views = [];
 	//var url = 'http://daisukebe15.tumblr.com/api/read/json?debug=1&num=5';
-	//http://www.tumblr.com/api/dashboard/json?debug=1&start=0&email=poleon.kd@gmail.com&password=28160tumblr&num=20&
+	//http://www.tumblr.com/api/dashboard/json?debug=1&start=0&email=&password=&num=20&
 	var url = 'http://www.tumblr.com/api/dashboard/json?debug=1&start=' + start + '&email=' + mail + '&password=' + pswd + '&num=20' + '&type=photo';
 	Ti.API.info("start:" + start);
 	
