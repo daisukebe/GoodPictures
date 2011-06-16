@@ -7,6 +7,12 @@ var scrollView = Ti.UI.createScrollableView({
     maxZoomScale:2.0
 });
 
+var actInd = Titanium.UI.createActivityIndicator({
+    height:Ti.Platform.displayCaps.platformHeight / 1.6,
+    width:80,
+    message:"Loading Dashboard..."
+});
+
 var reblogkey = [];
 var postid = [];
 
@@ -38,7 +44,17 @@ var Load = {
 	    n.show();
 	},500);
     },
-    
+
+    blur: function(){
+	scrollView = null;
+	scrollView = Ti.UI.createScrollableView({
+	    views:{},
+	    backgroundColor: color,
+	    showPagingControl:false,
+	    maxZoomScale:2.0
+	});
+    },
+
     run : function(start){
 	Ti.API.info('reloading from ' + start);
 
@@ -51,6 +67,8 @@ var Load = {
 	var loader = Titanium.Network.createHTTPClient();
 	loader.open('GET', url);
 	loader.onload = function(){
+	    actInd.show();
+	
 	    var re = this.responseText;
 	    var data = JSON.parse(re);
 	    data = data.posts;
@@ -60,13 +78,6 @@ var Load = {
 		//Ti.API.info(e["photo-caption"]);
 		//Ti.API.info(e.id + ':' + e["reblog-key"]);
 		(function(post){
-		    
-		    var view = Ti.UI.createView({
-			backgroundColor:color,
-			top:0,
-			canScale: true
-		    });
-		    
 		    var image = Ti.UI.createImageView({
 			image:post["photo-url-250"]
 		    });
@@ -74,10 +85,10 @@ var Load = {
 			Ti.API.info('doubletaped:' + scrollView.currentPage);
 			Load.reblog(post.id, post["reblog-key"]);
 		    });
-		    view.add(image);
-		    scrollView.addView(view);
+		    scrollView.addView(image);
 		})(data[i]);
 	    }
+	    actInd.hide();
 	};
 	loader.onerror = function(e){
 	    var diag = Ti.UI.createAlertDialog({

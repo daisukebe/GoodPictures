@@ -2,18 +2,23 @@ mainWin = Ti.UI.currentWindow;
 
 Ti.include('load2.js');
 
-var search = Titanium.UI.createSearchBar({
-        barColor:'#000', 
-        showCancel:true,
-        height:43,
-        top:0,
-});
-search.addEventListener('return', function(e){
-    Ti.API.info(e.value);
-    tagLoad.get(e.value);
-});
+function wait(a,func){
+    if(a.length > 0){
+	func();
+    }else{
+	var f = function(){wait(a,func)};
+	setTimeout(f,100);
+    }
+};
 
-mainWin.add(search);
+var list = []
+list = tagLoad.get();
+
+wait(list, function(){
+    for(var i = 0; i < 10; i++){
+	Ti.API.info(list[i]);
+    }
+});
 
 
 
