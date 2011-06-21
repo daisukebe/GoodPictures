@@ -10,7 +10,7 @@ var Account = {
 	var w = dis_width / 32;
 	
 	var account_view = Ti.UI.createView({
-	    backgroundColor:'black',
+	    backgroundColor:'#808080',
 	});
 	var mail_field = Ti.UI.createTextField({
 	    top: t,//60,
@@ -50,7 +50,7 @@ var Account = {
 		fontWeight:'bold',
 		fontStyle:'italic'
 	    },
-	    color: 'black',
+	    color: '#808080',
 	    top: t + 2 * h,//180,
 	    height: h,//40,
 	    left: w,//10,
@@ -61,7 +61,7 @@ var Account = {
 	    Ti.App.Properties.setString("pw", pswd);
 	    mainWin.remove(account_view);
 	    pswd_field.blur();
-	    Load.run(start);
+	    Load.run_at_first(start);
 	    
 	});
 
